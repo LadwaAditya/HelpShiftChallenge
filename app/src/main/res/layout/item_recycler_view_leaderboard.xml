@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_box"
+        android:paddingEnd="@dimen/padding_box"
+        android:paddingLeft="@dimen/padding_box"
+        android:paddingRight="@dimen/padding_box"
+        android:paddingStart="@dimen/padding_box"
+        android:paddingTop="@dimen/padding_box">
+
+        <TextView
+            android:id="@+id/teamNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Team name" />
+
+        <TextView
+            android:id="@+id/playedTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            tools:text="Played" />
+
+        <TextView
+            android:id="@+id/wonTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Won" />
+
+        <TextView
+            android:id="@+id/lossTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Loss" />
+
+        <TextView
+            android:id="@+id/drawnTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Drawn" />
+
+        <TextView
+            android:id="@+id/goalDifference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Goal Difference" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
