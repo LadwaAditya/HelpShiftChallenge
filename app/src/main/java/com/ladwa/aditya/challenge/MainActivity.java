@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.helpshift.support.Support;
 import com.ladwa.aditya.challenge.data.RestEndpoint;
 import com.ladwa.aditya.challenge.data.model.LeaderBoard;
 import com.ladwa.aditya.challenge.data.model.Match;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_message:
-                Toast.makeText(this, "Clicked menu", Toast.LENGTH_SHORT).show();
+                Support.showConversation(this);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -57,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.imageview_download)
     public void onClickImageView() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Downloading");
+        progressDialog.setMessage(getString(R.string.downloading));
         progressDialog.show();
         new RestEndpoint().getMatch().subscribe(new Subscriber<Match>() {
             @Override
             public void onCompleted() {
-                Log.d(TAG, "OnComplete");
+                Log.d(TAG, getString(R.string.complete));
                 progressDialog.cancel();
             }
 
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(bravo);
         LeaderBoard charli = new LeaderBoard();
 
-        charli.setTeamName("Charli");
+        charli.setTeamName("Charlie");
         charli.setPoints(match.getCharlie().getTeamPoint());
         charli.setGoalDifference(match.getCharlie().getTeamGoalDiff());
         charli.setWon(match.getCharlie().getWon());
@@ -138,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(list);
 
         final AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Download Completed")
-                .setMessage("Football match data is downloaded")
+                .setTitle(R.string.download_complete)
+                .setMessage(R.string.dialog_message_complete)
                 .setIcon(R.drawable.ic_check_circle_black_24dp)
                 .show();
 

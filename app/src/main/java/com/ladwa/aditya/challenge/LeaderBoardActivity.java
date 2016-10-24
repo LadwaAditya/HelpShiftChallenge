@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.helpshift.support.Support;
 import com.ladwa.aditya.challenge.data.model.LeaderBoard;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_message:
-                Toast.makeText(this, "Clicked menu", Toast.LENGTH_SHORT).show();
+                Support.showConversation(this);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
