@@ -10,7 +10,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.ladwa.aditya.challenge.data.RestEndpoint;
+import com.ladwa.aditya.challenge.data.model.LeaderBoard;
 import com.ladwa.aditya.challenge.data.model.Match;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,6 +25,7 @@ import rx.Subscriber;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private ArrayList<LeaderBoard> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNext(Match match) {
-                Log.d(TAG, match.getAlpha().getMatch1());
                 showNextActivity(match);
             }
         });
@@ -58,18 +64,68 @@ public class MainActivity extends AppCompatActivity {
 
     private void showNextActivity(Match match) {
 
-        int teamAlphaPoint = match.getAlpha().getTeamPoint();
-        int teamGoalDiff = match.getAlpha().getTeamGoalDiff();
+        list = new ArrayList<>();
 
-        Log.d(TAG, String.valueOf(teamAlphaPoint));
-        Log.d(TAG, String.valueOf(teamGoalDiff));
+        LeaderBoard alpha = new LeaderBoard();
+        alpha.setTeamName("Alpha");
+        alpha.setPoints(match.getAlpha().getTeamPoint());
+        alpha.setGoalDifference(match.getAlpha().getTeamGoalDiff());
+        alpha.setWon(match.getAlpha().getWon());
+        alpha.setLost(match.getAlpha().getLoss());
+        alpha.setDrawn(match.getAlpha().getDraw());
 
+        list.add(alpha);
+        LeaderBoard bravo = new LeaderBoard();
 
-        int teamBravoPoint = match.getBravo().getTeamPoint();
-        int teamBravoGoalDiff = match.getBravo().getTeamGoalDiff();
+        bravo.setTeamName("Bravo");
+        bravo.setPoints(match.getBravo().getTeamPoint());
+        bravo.setGoalDifference(match.getBravo().getTeamGoalDiff());
+        bravo.setWon(match.getBravo().getWon());
+        bravo.setLost(match.getBravo().getLoss());
+        bravo.setDrawn(match.getBravo().getDraw());
 
-        Log.d(TAG, String.valueOf(teamBravoPoint));
-        Log.d(TAG, String.valueOf(teamBravoGoalDiff));
+        list.add(bravo);
+        LeaderBoard charli = new LeaderBoard();
+
+        charli.setTeamName("Charli");
+        charli.setPoints(match.getCharlie().getTeamPoint());
+        charli.setGoalDifference(match.getCharlie().getTeamGoalDiff());
+        charli.setWon(match.getCharlie().getWon());
+        charli.setLost(match.getCharlie().getLoss());
+        charli.setDrawn(match.getCharlie().getDraw());
+
+        list.add(charli);
+        LeaderBoard delta = new LeaderBoard();
+
+        delta.setTeamName("Delta");
+        delta.setPoints(match.getDelta().getTeamPoint());
+        delta.setGoalDifference(match.getDelta().getTeamGoalDiff());
+        delta.setWon(match.getDelta().getWon());
+        delta.setLost(match.getDelta().getLoss());
+        delta.setDrawn(match.getDelta().getDraw());
+
+        list.add(delta);
+        LeaderBoard echo = new LeaderBoard();
+
+        echo.setTeamName("Echo");
+        echo.setPoints(match.getEcho().getTeamPoint());
+        echo.setGoalDifference(match.getEcho().getTeamGoalDiff());
+        echo.setWon(match.getEcho().getWon());
+        echo.setLost(match.getEcho().getLoss());
+        echo.setDrawn(match.getEcho().getDraw());
+
+        list.add(echo);
+
+        Collections.sort(list, new LeaderBoardComparator());
+        Collections.reverse(list);
+
+        Iterator<LeaderBoard> iterator = list.iterator();
+
+        for (LeaderBoard leaderBoard : list) {
+            Log.d(TAG, leaderBoard.getTeamName());
+            Log.d(TAG, String.valueOf(leaderBoard.getPoints()));
+            Log.d(TAG, String.valueOf(leaderBoard.getGoalDifference()));
+        }
 
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Download Completed")
@@ -81,8 +137,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 dialog.hide();
-                startActivity(new Intent(MainActivity.this, LeaderBoardActivity.class));
+                Intent intent = new Intent(MainActivity.this, LeaderBoardActivity.class);
+                intent.putParcelableArrayListExtra(getString(R.string.extra_list), list);
+                startActivity(intent);
             }
         }, 2000);
+    }
+
+
+    public class LeaderBoardComparator implements Comparator<LeaderBoard> {
+
+        @Override
+        public int compare(LeaderBoard leaderBoard, LeaderBoard t1) {
+            int v1 = leaderBoard.getPoints().compareTo(t1.getPoints());
+            if (v1 == 0) {
+                return leaderBoard.getGoalDifference().compareTo(t1.getGoalDifference());
+            } else {
+                return v1;
+            }
+        }
     }
 }

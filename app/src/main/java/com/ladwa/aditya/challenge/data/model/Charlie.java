@@ -24,6 +24,7 @@ public class Charlie implements Parcelable {
 
     private int teamPoint;
     private int teamGoalDiff;
+    private int won = 0, loss = 0, draw = 0;
 
     protected Charlie(Parcel in) {
         match1 = in.readString();
@@ -64,10 +65,15 @@ public class Charlie implements Parcelable {
         for (int i = 1; i <= 4; i++) {
             ownScore = (int) this.getMatch(i).charAt(0);
             otherScore = (int) this.getMatch(i).charAt(2);
-            if (ownScore > otherScore)
+            if (ownScore > otherScore) {
                 teamPoint += 3;
-            if (ownScore == otherScore)
+                won++;
+            } else if (ownScore == otherScore) {
                 teamPoint += 1;
+                loss++;
+            } else {
+                draw++;
+            }
             teamGoalDiff = ownScore - otherScore;
         }
         return teamPoint;
@@ -109,6 +115,29 @@ public class Charlie implements Parcelable {
         this.match4 = match4;
     }
 
+    public int getDraw() {
+        return draw;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
+    }
+
+    public int getLoss() {
+        return loss;
+    }
+
+    public void setLoss(int loss) {
+        this.loss = loss;
+    }
+
+    public int getWon() {
+        return won;
+    }
+
+    public void setWon(int won) {
+        this.won = won;
+    }
     @Override
     public int describeContents() {
         return 0;
