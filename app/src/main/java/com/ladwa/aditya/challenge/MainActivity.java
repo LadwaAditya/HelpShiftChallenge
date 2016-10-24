@@ -1,7 +1,10 @@
 package com.ladwa.aditya.challenge;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             public void onCompleted() {
                 Log.d(TAG, "OnComplete");
                 progressDialog.cancel();
+                showNextActivity();
+
             }
 
             @Override
@@ -50,5 +55,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showNextActivity() {
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Download Completed")
+                .setMessage("Football match data is downloaded")
+                .setIcon(R.drawable.ic_check_circle_black_24dp)
+                .show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.hide();
+                startActivity(new Intent(MainActivity.this, LeaderBoardActivity.class));
+            }
+        }, 2000);
     }
 }

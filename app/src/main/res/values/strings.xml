@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Challenge</string>
+    <string name="title_activity_leader_board">LeaderBoardActivity</string>
 </resources>
