@@ -1,9 +1,12 @@
 package com.ladwa.aditya.challenge.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Match {
+public class Match implements Parcelable {
 
     @SerializedName("Alpha")
     @Expose
@@ -20,6 +23,21 @@ public class Match {
     @SerializedName("Echo")
     @Expose
     private Echo echo;
+
+    protected Match(Parcel in) {
+    }
+
+    public static final Creator<Match> CREATOR = new Creator<Match>() {
+        @Override
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        @Override
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
 
     public Alpha getAlpha() {
         return alpha;
@@ -59,5 +77,14 @@ public class Match {
 
     public void setEcho(Echo echo) {
         this.echo = echo;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
     }
 }
