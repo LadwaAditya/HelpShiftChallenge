@@ -1,57 +1,53 @@
+
 package com.ladwa.aditya.challenge.data.model;
 
-/**
- * Created by Aditya on 24-Oct-16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Echo {
-    private String match_1;
 
-    private String match_4;
+    @SerializedName("match_1")
+    @Expose
+    private String match1;
+    @SerializedName("match_2")
+    @Expose
+    private String match2;
+    @SerializedName("match_3")
+    @Expose
+    private String match3;
+    @SerializedName("match_4")
+    @Expose
+    private String match4;
 
-    private String match_3;
-
-    private String match_2;
-
-    public String getMatch_1 ()
-    {
-        return match_1;
+    public String getMatch1() {
+        return match1;
     }
 
-    public void setMatch_1 (String match_1)
-    {
-        this.match_1 = match_1;
+    public void setMatch1(String match1) {
+        this.match1 = match1;
     }
 
-    public String getMatch_4 ()
-    {
-        return match_4;
+    public String getMatch2() {
+        return match2;
     }
 
-    public void setMatch_4 (String match_4)
-    {
-        this.match_4 = match_4;
+    public void setMatch2(String match2) {
+        this.match2 = match2;
     }
 
-    public String getMatch_3 ()
-    {
-        return match_3;
+    public String getMatch3() {
+        return match3;
     }
 
-    public void setMatch_3 (String match_3)
-    {
-        this.match_3 = match_3;
+    public void setMatch3(String match3) {
+        this.match3 = match3;
     }
 
-    public String getMatch_2 ()
-    {
-        return match_2;
+    public String getMatch4() {
+        return match4;
     }
 
-    public void setMatch_2 (String match_2)
-    {
-        this.match_2 = match_2;
+    public void setMatch4(String match4) {
+        this.match4 = match4;
     }
-
-
 }

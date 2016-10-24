@@ -1,6 +1,5 @@
 package com.ladwa.aditya.challenge.data;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ladwa.aditya.challenge.data.model.Match;
@@ -25,10 +24,12 @@ public class RestEndpoint {
 
 
     public RestEndpoint() {
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         mRetrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(mBaseUrl)
                 .client(new OkHttpClient())
@@ -43,7 +44,7 @@ public class RestEndpoint {
     }
 
     private interface MatchService {
-        @GET("/FootballScoresData.json")
+        @GET("FootballScoresData.json")
         Observable<Match> getMatchdata();
     }
 }
