@@ -119,14 +119,6 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(list, new LeaderBoardComparator());
         Collections.reverse(list);
 
-        Iterator<LeaderBoard> iterator = list.iterator();
-
-        for (LeaderBoard leaderBoard : list) {
-            Log.d(TAG, leaderBoard.getTeamName());
-            Log.d(TAG, String.valueOf(leaderBoard.getPoints()));
-            Log.d(TAG, String.valueOf(leaderBoard.getGoalDifference()));
-        }
-
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Download Completed")
                 .setMessage("Football match data is downloaded")

@@ -23,10 +23,16 @@
             tools:text="Team name" />
 
         <TextView
-            android:id="@+id/playedTv"
+            android:id="@+id/pointsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            tools:text="Points" />
+
+        <TextView
+            android:id="@+id/playedTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             tools:text="Played" />
 
         <TextView

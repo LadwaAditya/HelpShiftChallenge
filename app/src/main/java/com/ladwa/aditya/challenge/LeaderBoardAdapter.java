@@ -41,8 +41,9 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
         leaderBoard = mLeaderBoardArrayList.get(position);
 
         holder.teamName.setText("Team " + (position + 1) + " " + leaderBoard.getTeamName());
+        holder.points.setText("Points : " + leaderBoard.getPoints());
         holder.played.setText("Played: " + leaderBoard.getPlayed());
-        holder.won.setText(new StringBuilder().append("Won: ").append(leaderBoard.getWon()).toString());
+        holder.won.setText("Won: " + leaderBoard.getWon());
         holder.loss.setText("Loss: " + leaderBoard.getLost());
         holder.drawn.setText("Drawn: " + leaderBoard.getDrawn());
         holder.goalDifference.setText("Goal Difference: " + leaderBoard.getGoalDifference());
@@ -71,6 +72,9 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
 
         @BindView(R.id.wonTv)
         TextView won;
+
+        @BindView(R.id.pointsTv)
+        TextView points;
 
         @BindView(R.id.lossTv)
         TextView loss;
