@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             public void onCompleted() {
                 Log.d(TAG, "OnComplete");
                 progressDialog.cancel();
-                showNextActivity();
-
             }
 
             @Override
@@ -52,12 +50,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(Match match) {
                 Log.d(TAG, match.getAlpha().getMatch1());
+                showNextActivity(match);
             }
         });
 
     }
 
-    private void showNextActivity() {
+    private void showNextActivity(Match match) {
+
+        int teamAlphaPoint = match.getAlpha().getTeamPoint();
+        int teamGoalDiff = match.getAlpha().getTeamGoalDiff();
+
+        Log.d(TAG, String.valueOf(teamAlphaPoint));
+        Log.d(TAG, String.valueOf(teamGoalDiff));
+
+
+        int teamBravoPoint = match.getBravo().getTeamPoint();
+        int teamBravoGoalDiff = match.getBravo().getTeamGoalDiff();
+
+        Log.d(TAG, String.valueOf(teamBravoPoint));
+        Log.d(TAG, String.valueOf(teamBravoGoalDiff));
+
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Download Completed")
                 .setMessage("Football match data is downloaded")

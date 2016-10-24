@@ -24,6 +24,9 @@ public class Match implements Parcelable {
     @Expose
     private Echo echo;
 
+    private int teamPoint;
+    private int teamGoalDiff;
+
     protected Match(Parcel in) {
     }
 
@@ -38,6 +41,7 @@ public class Match implements Parcelable {
             return new Match[size];
         }
     };
+
 
     public Alpha getAlpha() {
         return alpha;

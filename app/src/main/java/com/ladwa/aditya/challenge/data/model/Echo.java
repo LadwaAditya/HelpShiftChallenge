@@ -22,11 +22,47 @@ public class Echo implements Parcelable {
     @Expose
     private String match4;
 
+    private int teamPoint;
+    private int teamGoalDiff;
+
     protected Echo(Parcel in) {
         match1 = in.readString();
         match2 = in.readString();
         match3 = in.readString();
         match4 = in.readString();
+    }
+
+    public String getMatch(int i) {
+        switch (i) {
+            case 1:
+                return match1;
+            case 2:
+                return match2;
+            case 3:
+                return match3;
+            case 4:
+                return match4;
+        }
+        return null;
+    }
+
+
+    public int getTeamPoint() {
+        int ownScore = 0, otherScore = 0;
+        for (int i = 1; i <= 4; i++) {
+            ownScore = (int) this.getMatch(i).charAt(0);
+            otherScore = (int) this.getMatch(i).charAt(2);
+            if (ownScore > otherScore)
+                teamPoint += 3;
+            if (ownScore == otherScore)
+                teamPoint += 1;
+            teamGoalDiff = ownScore - otherScore;
+        }
+        return teamPoint;
+    }
+
+    public int getTeamGoalDiff() {
+        return teamGoalDiff;
     }
 
     public static final Creator<Echo> CREATOR = new Creator<Echo>() {
