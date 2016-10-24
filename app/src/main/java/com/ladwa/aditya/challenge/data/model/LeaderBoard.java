@@ -3,10 +3,7 @@ package com.ladwa.aditya.challenge.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Comparator;
-
 /**
- *
  * Created by Aditya on 24-Oct-16.
  */
 
@@ -14,13 +11,22 @@ public class LeaderBoard implements Parcelable {
     private String teamName;
     private Integer played = 4;
     private Integer points;
-    private Integer won, lost, drawn, goalDifference;
+    private Integer won;
+    private Integer lost;
+    private Integer drawn;
+    private Integer goalDifference;
+
+    public LeaderBoard() {
+    }
+
 
     protected LeaderBoard(Parcel in) {
         teamName = in.readString();
-    }
-
-    public LeaderBoard() {
+        points = in.readInt();
+        won = in.readInt();
+        lost = in.readInt();
+        drawn = in.readInt();
+        goalDifference = in.readInt();
     }
 
     public static final Creator<LeaderBoard> CREATOR = new Creator<LeaderBoard>() {
@@ -91,7 +97,6 @@ public class LeaderBoard implements Parcelable {
         this.goalDifference = goalDifference;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -100,5 +105,11 @@ public class LeaderBoard implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(teamName);
+        parcel.writeInt(points);
+        parcel.writeInt(won);
+        parcel.writeInt(lost);
+        parcel.writeInt(drawn);
+        parcel.writeInt(goalDifference);
+
     }
 }
