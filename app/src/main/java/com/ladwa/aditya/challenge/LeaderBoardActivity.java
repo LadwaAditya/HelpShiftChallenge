@@ -6,6 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.ladwa.aditya.challenge.data.model.LeaderBoard;
 
@@ -48,6 +51,24 @@ public class LeaderBoardActivity extends AppCompatActivity {
         leaderBoardAdapter = new LeaderBoardAdapter(leaderBoards, this);
         recyclerView.setAdapter(leaderBoardAdapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_message:
+                Toast.makeText(this, "Clicked menu", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public class LeaderBoardComparator implements Comparator<LeaderBoard> {

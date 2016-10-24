@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ladwa.aditya.challenge.data.RestEndpoint;
@@ -16,7 +18,6 @@ import com.ladwa.aditya.challenge.data.model.Match;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,9 +36,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_message:
+                Toast.makeText(this, "Clicked menu", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @OnClick(R.id.imageview_download)
     public void onClickImageView() {
-        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Downloading");
         progressDialog.show();
