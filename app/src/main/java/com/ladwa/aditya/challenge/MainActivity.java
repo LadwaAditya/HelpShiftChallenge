@@ -1,5 +1,6 @@
 package com.ladwa.aditya.challenge;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -21,5 +22,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.imageview_download)
     public void onClickImageView() {
         Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Downloading");
+        progressDialog.show();
     }
 }
