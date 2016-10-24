@@ -11,6 +11,7 @@
     tools:context="com.ladwa.aditya.challenge.MainActivity">
 
     <ImageView
+        android:id="@+id/imageview_download"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_file_download_black_24dp"
         android:layout_width="100dp"
